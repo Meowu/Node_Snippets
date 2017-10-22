@@ -1,0 +1,24 @@
+{
+  "name": "node_snippets",
+  "version": "1.0.0",
+  "description": "Some code snippets of practicing Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xiaojie668329/Node_Snippets.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Utils",
+    "Snippets"
+  ],
+  "author": "Meowu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xiaojie668329/Node_Snippets/issues"
+  },
+  "homepage": "https://github.com/Xiaojie668329/Node_Snippets#readme"
+}
