@@ -14,13 +14,10 @@ function rename() {
 				if (err) throw err
 					if (stats.isFile()) {
 						const basename = path.basename(file)
-						console.log(`file ${index}: ${basename}`)
 						if (basename.includes('@2x')) {
 							let newname = basename.replace('@2x', '')
-							console.log(newname)
 							fs.rename(file, newname, (err) => {
 								if (err) throw err
-								console.log(`new file ${index}: ${newname}`)
 							})
 						}
 			} 

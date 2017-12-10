@@ -5,27 +5,23 @@
 const path = require("path");
 const fs = require("fs");
 
-function remove() {
+function remove(ext) {
+  if (typeof ext !== 'string') {
+    throw new Error('extention name must be string.')
+    return 
+  }
   const pwd = process.cwd();
-  console.log("reading diretory...");
   fs.readdir(pwd, (err, files) => {
     if (err) throw err;
-    console.log("read success.");
-    //  console.log(files)
     (function iterate(index) {
       if (index === files.length) {
-        console.log("delete done.");
         return;
       }
       const file = files[index];
-      console.log(file);
       const extname = path.extname(file);
-      console.log(extname);
-
-      if (extname === ".jpg") {
+      if (extname === ext) {
         fs.unlink(file, err => {
           if (err) throw err;
-          console.log(`deleting file ${index + 1}: ${file}`);
           iterate(index + 1);
         });
       } else {
