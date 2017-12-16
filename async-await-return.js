@@ -48,3 +48,26 @@ async function returnAwaitFoo() {
   }
 }
 returnAwaitFoo().then(e => console.log(e)) // 这里会等待一秒，然后要么得到promise fullfill后的'yoooo!'要么得到promise reject后的 Error('Oops')。如果rejected了错误会被catch捕获到，如果fullfilled它的值将会被返回并且被async函数的隐式Promise.resolve处理，然后我们在then语句中可以得到它的值。这实际上相当于 const value = await foo()  return value。
+ 
+// const arr1 =  new Array(5) => [empty x 5]
+// arr.map((el, i) => console.log(i * 1000))
+// const arr2 = Array.apply(null, Array(5)) => [undefined, undefined, undefined, undefined, undefined]
+// arr2.map((el, i) => console.log(i * 1000)) => 0, 1000, 2000, 3000, 4000
+// map, reduce这些方法会忽略空值，而find，findIndex，keys，for-of则会对空值进行迭代。
+function sleepAndReturnVal(val, ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(val)
+    }, ms);
+  });
+}
+(async () => {
+  const arr = Array.apply(null, Array(5))
+  const promises = arr.map((pro, i) => sleepAndReturnVal(`promise ${i}`, i*1000))
+  console.log(promises)
+
+  for (const promise of promises) {
+    const data = await promise
+    console.log(data);
+  }
+})()
